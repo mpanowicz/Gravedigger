@@ -2,7 +2,7 @@
 MPI project
 
 ###Update fork
-''`
+```
 git remote add upstream https://github.com/marcin-jablonski/rabin-chess
 git fetch upstream
 git checkout master
