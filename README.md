@@ -3,7 +3,7 @@ MPI project
 
 ###Update fork
 ```
-git remote add upstream https://github.com/marcin-jablonski/rabin-chess
+git remote add upstream https://github.com/mpanowicz/Gravedigger
 git fetch upstream
 git checkout master
 git rebase upstream/master
