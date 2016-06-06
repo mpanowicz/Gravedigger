@@ -1,16 +1,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
-#include <netdb.h>
-#include <fcntl.h>
-#include <string.h>
-#include <iostream>
-#include <vector>
-#include <sstream>
-#include <fstream>
 
 #define readI(fd, x) read(fd, x, sizeof(int))
 #define readF(fd, x) read(fd, x, sizeof(float))
