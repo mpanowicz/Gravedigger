@@ -3,6 +3,10 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
 
 #define MAX_SIZE 256
 #define readI(fd, x) read(fd, x, sizeof(int))
@@ -11,6 +15,7 @@
 #define writeF(fd, x) write(fd, x, sizeof(float))
 
 int main(int argc, char** argv) {
+	long currentTime = 0;
 	while(1){
 		int fd, con = 0;
 		struct sockaddr_in sa;
@@ -21,14 +26,21 @@ int main(int argc, char** argv) {
 		sa.sin_port = htons(8080);
 		memcpy(&sa.sin_addr.s_addr, addrent->h_addr, addrent->h_length);
 		con = connect(fd, (struct sockaddr*)&sa, sizeof(sa));
+		int corpses = 0;
 		if(con == 0){
 			int count;
-			int rank=1;
+			int rank=atoi(argv[1]);
+			long time;
 			writeI(fd, &rank);
 			readI(fd, &count);
-			printf("Corpses:%d\n", count);
+			readI(fd, &time);
+			if(time > currentTime){
+				currentTime = time;
+				corpses = count;
+				printf("Corpses:%d Time:%ld\n", count, currentTime);
+			}
 			close(fd);
-			break;
+			//break;
 		}
 		close(fd);
 	}
