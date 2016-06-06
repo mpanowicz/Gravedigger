@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 	
 	fdc = socket(PF_INET, SOCK_STREAM, 0);
 	lsa.sin_family = PF_INET;
-	lsa.sin_port = htons(1234);
+	lsa.sin_port = htons(8080);
 	lsa.sin_addr.s_addr = INADDR_ANY;
 	bind(fdc, (struct sockaddr*)&lsa, sizeof(lsa));
 	listen(fdc, 10);
@@ -46,8 +46,10 @@ int main(int argc, char** argv) {
 		fd2 = accept(fdc, (struct sockaddr*)&laddr, &size);
 		if(!fork()){
 			close(fdc);
+			int rank;
+			readI(fd2, &rank);
 			int count = 1;
-			printf("Nowe połączenie: %s:%i\n", inet_ntoa((struct in_addr)laddr.sin_addr), laddr.sin_port);
+			printf("Nowe połączenie: %i\n", rank);
 			writeI(fd2, &count);
 			close(fd2);
 			return 0;
