@@ -20,13 +20,15 @@ int main(int argc, char** argv) {
 		struct sockaddr_in sa;
 		struct hostent* addrent;
 		fd = socket(PF_INET, SOCK_STREAM, 0);
-		addrent=gethostbyname(argv[1]);
+		addrent=gethostbyname("panowiczmichal.ddns.net");
 		sa.sin_family = PF_INET;
-		sa.sin_port = htons(1234);
+		sa.sin_port = htons(8080);
 		memcpy(&sa.sin_addr.s_addr, addrent->h_addr, addrent->h_length);
 		con = connect(fd, (struct sockaddr*)&sa, sizeof(sa));
 		if(con == 0){
 			int count;
+			int rank=1;
+			writeI(fd, &rank);
 			readI(fd, &count);
 			printf("Corpses:%d\n", count);
 			close(fd);
