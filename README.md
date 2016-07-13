@@ -1,6 +1,17 @@
-# Gravedigger
-MPI project
+# joGravedigger
+
+Compile options
 
 ```
-https://docs.google.com/document/d/17Gr2QCzALamacIXw2xbtwE4XXKzZDBjbayrPsjW781E/edit?usp=sharing
+mpiCC grabarz.cpp  -std=c++11 -o g.exe
+```
+```
+mpirun -default-hostfile none -hostfile hosty -np 10 ./g.exe
+```
+
+hosty:
+```
+lab-os-6
+lab-os-7
+lab-os-8
 ```
